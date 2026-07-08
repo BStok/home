@@ -6,15 +6,18 @@
 <title>Parsley — deploy from a URL</title>
 <style>
   :root {
-    --bg: #0c0d0a;
+    --bg: #0b0c09;
     --bg-panel: #131410;
-    --line: #2a2c24;
-    --green: #7ee787;
+    --bg-panel-raised: #171912;
+    --line: #262820;
+    --line-soft: #1d1f18;
+    --green: #8fd88a;
     --green-dim: #3f6e44;
-    --amber: #e8b75e;
+    --amber: #d9a655;
     --text: #d9dccf;
     --text-dim: #7a7d70;
-    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --text-faint: #4f5248;
+    --mono: 'IBM Plex Mono', 'JetBrains Mono', 'Courier New', monospace;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,19 +27,16 @@
     color: var(--text);
     font-family: var(--mono);
     line-height: 1.5;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: -1px -1px;
+    background-image: radial-gradient(var(--line-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
   ::selection { background: var(--green-dim); color: var(--bg); }
 
-  a { color: inherit; }
+  a { color: inherit; text-decoration: none; }
 
   .wrap {
-    max-width: 880px;
+    max-width: 860px;
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -44,7 +44,7 @@
   /* ---------- nav ---------- */
   nav {
     border-bottom: 1px solid var(--line);
-    background: rgba(12,13,10,0.9);
+    background: rgba(11,12,9,0.92);
     backdrop-filter: blur(4px);
     position: sticky;
     top: 0;
@@ -54,38 +54,43 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
+    height: 54px;
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    gap: 9px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    font-weight: 600;
   }
-  .brand .dot {
-    width: 8px; height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--green);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  .brand .glyph {
+    color: var(--green);
+    font-weight: 400;
   }
   nav .links {
     display: flex;
-    gap: 24px;
+    align-items: center;
+    gap: 26px;
     font-size: 12px;
     color: var(--text-dim);
   }
-  nav .links a:hover { color: var(--green); }
+  nav .links a { border-bottom: 1px solid transparent; padding-bottom: 2px; transition: color 0.15s ease, border-color 0.15s ease; }
+  nav .links a:hover { color: var(--green); border-color: var(--green-dim); }
+  nav .links .cta {
+    color: var(--bg);
+    background: var(--green);
+    padding: 7px 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: none;
+  }
+  nav .links .cta:hover { color: var(--bg); background: #a6e6a1; border-color: transparent; }
 
   /* ---------- hero ---------- */
   .hero {
-    padding: 88px 0 56px;
+    padding: 84px 0 52px;
     border-bottom: 1px solid var(--line);
   }
   .eyebrow {
@@ -106,11 +111,11 @@
     background: var(--green-dim);
   }
   h1 {
-    font-size: clamp(32px, 5vw, 52px);
+    font-size: clamp(32px, 5vw, 50px);
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: -0.5px;
-    max-width: 680px;
+    max-width: 660px;
     color: #f2f3ec;
   }
   h1 .accent { color: var(--green); }
@@ -118,28 +123,26 @@
     margin-top: 20px;
     font-size: 15px;
     color: var(--text-dim);
-    max-width: 520px;
+    max-width: 500px;
     line-height: 1.7;
   }
   .stack-line {
-    margin-top: 28px;
+    margin-top: 26px;
     font-size: 12px;
-    color: var(--text-dim);
+    color: var(--text-faint);
     display: flex;
     flex-wrap: wrap;
     gap: 6px 0;
   }
-  .stack-line .tag {
-    color: var(--amber);
-  }
+  .stack-line .tag { color: var(--amber); }
   .stack-line .sep { color: var(--line); margin: 0 10px; }
 
   /* ---------- console / demo ---------- */
   .console {
-    margin-top: 40px;
+    margin-top: 38px;
     border: 1px solid var(--line);
     background: var(--bg-panel);
-    max-width: 640px;
+    max-width: 620px;
   }
   .console-bar {
     display: flex;
@@ -147,14 +150,12 @@
     gap: 6px;
     padding: 10px 14px;
     border-bottom: 1px solid var(--line);
+    background: var(--bg-panel-raised);
   }
   .console-bar .led {
-    width: 8px; height: 8px; border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: var(--line);
   }
-  .console-bar .led.r { background: #b5594f; }
-  .console-bar .led.y { background: var(--amber); }
-  .console-bar .led.g { background: var(--green-dim); }
   .console-bar .title {
     margin-left: 8px;
     font-size: 11px;
@@ -168,7 +169,7 @@
   .console-row {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
   .console-row .prompt { color: var(--green); flex-shrink: 0; }
   .console-input {
@@ -183,12 +184,12 @@
     outline: none;
   }
   .console-input:focus { border-bottom-color: var(--green-dim); }
-  .console-input::placeholder { color: var(--text-dim); }
+  .console-input::placeholder { color: var(--text-faint); }
 
   .deploy-btn {
-    margin-top: 16px;
+    display: inline-block;
     background: var(--green);
-    color: #0c0d0a;
+    color: #0b0c09;
     border: none;
     font-family: var(--mono);
     font-size: 12px;
@@ -197,36 +198,19 @@
     text-transform: uppercase;
     padding: 11px 22px;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, transform 0.1s ease;
   }
-  .deploy-btn:hover { background: #99f0a0; }
-
-  .console-log {
-    margin-top: 18px;
-    border-top: 1px dashed var(--line);
-    padding-top: 14px;
-    font-size: 12px;
-    color: var(--text-dim);
-    display: none;
-  }
-  .console-log.show { display: block; }
-  .console-log .line {
-    margin-bottom: 4px;
-    opacity: 0;
-    animation: fadein 0.3s ease forwards;
-  }
-  .console-log .line.ok { color: var(--green); }
-  .console-log .line .t { color: var(--line); margin-right: 8px; }
-  @keyframes fadein { to { opacity: 1; } }
-
-  .console-log .url-line {
-    margin-top: 10px;
-    color: var(--amber);
+  .deploy-btn:hover { background: #a6e6a1; }
+  .deploy-btn:active { transform: translateY(1px); }
+  .deploy-hint {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--text-faint);
   }
 
   /* ---------- pipeline ---------- */
   .pipeline {
-    padding: 64px 0;
+    padding: 60px 0;
     border-bottom: 1px solid var(--line);
   }
   .section-label {
@@ -273,7 +257,7 @@
 
   /* ---------- stacks ---------- */
   .stacks {
-    padding: 64px 0;
+    padding: 60px 0;
     border-bottom: 1px solid var(--line);
   }
   .stack-grid {
@@ -305,7 +289,7 @@
 
   /* ---------- footer ---------- */
   footer {
-    padding: 40px 0;
+    padding: 36px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -318,13 +302,8 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--line); }
 
-  @media (prefers-reduced-motion: reduce) {
-    .brand .dot { animation: none; }
-    .console-log .line { animation: none; opacity: 1; }
-  }
-
   /* focus visibility */
-  button:focus-visible, input:focus-visible {
+  button:focus-visible, input:focus-visible, a:focus-visible {
     outline: 1px solid var(--green);
     outline-offset: 2px;
   }
@@ -334,11 +313,12 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand"><span class="dot"></span> PARSLEY</div>
+    <a class="brand" href="https://app.parsley.website/"><span class="glyph">&gt;_</span> PARSLEY</a>
     <div class="links">
       <a href="#pipeline">how it works</a>
       <a href="#stacks">stacks</a>
-      <a href="https://github.com" target="_blank" rel="noopener">github</a>
+      <a href="https://github.com/BStok/Parsley" target="_blank" rel="noopener">github</a>
+      <a class="cta" href="https://app.parsley.website/">open app</a>
     </div>
   </div>
 </nav>
@@ -365,7 +345,9 @@
 
     <div class="console">
       <div class="console-bar">
-        <span class="led r"></span><span class="led y"></span><span class="led g"></span>
+        <span class="led" style="background:#b5594f"></span>
+        <span class="led" style="background:var(--amber)"></span>
+        <span class="led" style="background:var(--green-dim)"></span>
         <span class="title">deploy.sh</span>
       </div>
       <div class="console-body">
@@ -374,15 +356,8 @@
           <input class="console-input" id="repoInput" type="text"
                  placeholder="https://github.com/you/your-project" />
         </div>
-        <button class="deploy-btn" id="deployBtn">Deploy</button>
-
-        <div class="console-log" id="consoleLog">
-          <div class="line t1"><span class="t">[1/4]</span>cloning repository…</div>
-          <div class="line t2"><span class="t">[2/4]</span>detected: fastapi · port 8000</div>
-          <div class="line t3"><span class="t">[3/4]</span>building image…</div>
-          <div class="line ok t4"><span class="t">[4/4]</span>deployed</div>
-          <div class="line url-line t5">→ your-project.parsley.website</div>
-        </div>
+        <a class="deploy-btn" id="deployBtn" href="https://app.parsley.website/">Deploy</a>
+        <div class="deploy-hint">Opens the Parsley app to finish deploying this repo.</div>
       </div>
     </div>
   </div>
@@ -441,33 +416,24 @@
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
     <span>parsley — built by a small team, in the open</span>
-    <a href="https://github.com" target="_blank" rel="noopener">source →</a>
+    <a href="https://github.com/BStok/Parsley" target="_blank" rel="noopener">source →</a>
   </div>
 </footer>
 
 <script>
-  const btn = document.getElementById('deployBtn');
-  const log = document.getElementById('consoleLog');
   const input = document.getElementById('repoInput');
+  const deployBtn = document.getElementById('deployBtn');
 
-  btn.addEventListener('click', () => {
-    log.classList.remove('show');
-    void log.offsetWidth; // restart animation
-    log.classList.add('show');
-
-    const lines = log.querySelectorAll('.line');
-    lines.forEach((line, i) => {
-      line.style.animation = 'none';
-      void line.offsetWidth;
-      line.style.animationDelay = (i * 0.35) + 's';
-      line.style.animation = 'fadein 0.3s ease forwards';
-      line.style.animationFillMode = 'forwards';
-      line.style.opacity = '0';
-    });
+  // If the user typed a repo URL, carry it over to the app as a query param.
+  input.addEventListener('input', () => {
+    const val = input.value.trim();
+    deployBtn.href = val
+      ? 'https://app.parsley.website/?repo=' + encodeURIComponent(val)
+      : 'https://app.parsley.website/';
   });
 
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') btn.click();
+    if (e.key === 'Enter') deployBtn.click();
   });
 </script>
 
