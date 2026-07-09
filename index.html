@@ -316,7 +316,7 @@
 
         <p class="sub">
           Parsley clones your GitHub repository, figures out what it is, builds a container,
-          and runs it behind HTTPS — without you writing a Dockerfile or touching a server.
+          and runs it behind HTTPS. Without you writing a Dockerfile or touching a server.
         </p>
 
         <div class="stack-line">
@@ -339,7 +339,7 @@
 
         <div class="deploy-row">
           <a class="deploy-btn" id="deployBtn" href="https://app.parsley.website/">Deploy →</a>
-          <span class="deploy-hint">opens the Parsley app to finish deploying this repo</span>
+          
         </div>
       </div>
     </div>
@@ -353,24 +353,24 @@
       <div class="pipe-cmd"><span class="p">$</span>parsley deploy <span class="arg">https://github.com/you/your-project</span></div>
 
       <div class="pipe-step">
-        <span class="branch">├─</span><span class="name">clone</span>
-        <span class="desc">pulls your repo from the URL you give it — public repos, no setup</span>
+        <span class="branch">├─</span><span class="name">1. clone</span>
+        <span class="desc">pulls your repo from the URL you give it, no setup needed</span>
       </div>
       <div class="pipe-step">
-        <span class="branch">├─</span><span class="name">detect</span>
+        <span class="branch">├─</span><span class="name">2. detect</span>
         <span class="desc">reads your files to figure out the framework, port, and start command</span>
       </div>
       <div class="pipe-step">
-        <span class="branch">├─</span><span class="name">build</span>
+        <span class="branch">├─</span><span class="name">3. build</span>
         <span class="desc">generates the right Dockerfile and builds a container image</span>
       </div>
       <div class="pipe-step">
-        <span class="branch">├─</span><span class="name">deploy</span>
+        <span class="branch">├─</span><span class="name">4. deploy</span>
         <span class="desc">runs your container and routes traffic to it through HTTPS</span>
       </div>
       <div class="pipe-step">
-        <span class="branch">└─</span><span class="name">watch</span>
-        <span class="desc">push to main and Parsley rebuilds and redeploys automatically</span>
+        <span class="branch">└─</span><span class="name">5. automated redeploy</span>
+        <span class="desc">Everytime you push new changes to main, Parsley rebuilds and redeploys automatically</span>
       </div>
     </div>
   </div>
@@ -395,7 +395,8 @@
 
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
-    <span>parsley — built by a small team, in the open</span>
+    <span>parsley: built by a small team, in the open</span>
+    <span>designed for developers by developers </span>
     <a href="https://github.com/BStok/Parsley" target="_blank" rel="noopener">source →</a>
   </div>
 </footer>
